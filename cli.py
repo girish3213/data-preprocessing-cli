@@ -8,7 +8,7 @@ def main():
 @main.command()
 @click.option('--input-file', type=click.Path(exists=True), help='Input file path')
 @click.option('--output-file', type=click.Path(), help='Output file path')
-def preprocess(input_file, output_file):
+def missing(input_file, output_file):
     if not output_file:
         output_file = click.prompt('Enter output file name (include .csv extension)')
     missing_values.impute_missing_values(input_file, output_file)

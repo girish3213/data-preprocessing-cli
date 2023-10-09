@@ -1,6 +1,6 @@
 # data-preprocessing-cli
 
-python cli.py preprocess --input-file data/input_data.csv --output-file data/output_data.csv
+python cli.py missing --input-file data/input_data.csv --output-file data/output_data.csv
 
 
 python cli.py encode --input-file data/input_data.csv --output-file data/output_data.csv
