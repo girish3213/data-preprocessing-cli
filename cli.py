@@ -14,13 +14,14 @@ def missing(input_file, output_file):
     missing_values.impute_missing_values(input_file, output_file)
 
 @main.command()
-@click.option('--input-file', type=click.Path(exists=True), help='Input file path')
-@click.option('--output-file', type=click.Path(), help='Output file path')
-def encode(input_file, output_file):
-    if not output_file:
-        output_file = click.prompt('Enter output file name (include .csv extension)')
-    encode_categorical.encode_categorical_values(input_file, output_file)
-
+@click.option('--input-file', required=True, help='Input CSV file path')
+@click.option('--output-file', required=True, help='Output CSV file path')
+@click.option('--strategy', required=True, type=click.Choice(['onehot', 'label']), help='Encoding strategy')
+@click.option('--columns', required=True, help='Comma-separated list of columns to encode')
+def encode(input_file, output_file, strategy, columns):
+    columns = columns.split(',')
+    encode_categorical.encode_categorical_values(input_file, output_file, strategy, columns)
+    
 @main.command()
 @click.option('--input-file', type=click.Path(exists=True), help='Input file path')
 @click.option('--output-file', type=click.Path(), help='Output file path')
@@ -31,6 +32,7 @@ def scale(input_file, output_file, scaler, columns):
         output_file = click.prompt('Enter output file name (include .csv extension)')
     columns = list(map(int, columns.split(',')))
     feature_scaling.scale_features(input_file, output_file, scaler, columns)
+
 
 
 
