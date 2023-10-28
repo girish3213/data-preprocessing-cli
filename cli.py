@@ -32,7 +32,16 @@ def scale(input_file, output_file, scaler, columns):
         output_file = click.prompt('Enter output file name (include .csv extension)')
     columns = list(map(int, columns.split(',')))
     feature_scaling.scale_features(input_file, output_file, scaler, columns)
-
+@main.command()
+@click.option('--input-file', type=click.Path(exists=True), help='Input file path')
+@click.option('--output-file', type=click.Path(), help='Output file path')
+@click.option('--strategy', type=click.Choice(['heatmap', 'pairplot', 'countplot']), help='Plotting strategy')
+@click.option('--columns', multiple=True, help='Columns for plotting')
+def generate_plots(input_file, output_file, strategy, columns):
+    if not output_file:
+        output_file = click.prompt('Enter output file name (include .png extension)')
+    plots(input_file, output_file, strategy, columns)
+    
 
 
 
