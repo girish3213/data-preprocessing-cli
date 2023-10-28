@@ -61,9 +61,6 @@ python cli.py generate_plots --input-file input_data.csv --output-file output_pl
     <li><a href="https://matplotlib.org/" target="_blank">Matplotlib</a></li>
 </ul>
 
-<h2>License</h2>
-
-<p>This project is licensed under the <a href="LICENSE" target="_blank">MIT License</a>.</p>
 
 <h2>Acknowledgments</h2>
 
